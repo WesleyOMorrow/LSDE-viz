@@ -11,12 +11,15 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
 
-        <!-- Includes Chart.js -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.js"></script>
+        <!-- Include Chart.js -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.js"></script>
 
-        <!-- Includes .js chart files 
+        <!-- Include jQuery -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+        <!-- Include .js chart files -->
         <script src="js/line_chart_sample.js"></script>
-        <script src="js/bar_chart_sample.js"></script> -->
+        <script src="js/balance_chart.js"></script>
 
     </head>
 
@@ -39,7 +42,10 @@
         <header class="bg-primary bg-gradient text-white">
             <div class="container px-4 text-center">
                 <h1 class="fw-bolder">Bitcoin Snapshots</h1>
-                <p class="lead"><span style="font-weight:600">Sample (bold)</span> text</p>
+                <p class="lead">To build a server-static HTML/JavaScript web page, 
+                    a Bootstrap one page scrolling website is created. This page displays
+                    interactive visualizations with various charts such as line charts and histograms.
+                </p>
             </div>
         </header>
 
@@ -52,68 +58,25 @@
                         <p class="lead">Below is a line chart sample:</p>
                         <canvas id="line_chart_sample"></canvas>
                         <script>
-                            var ctx = document.getElementById('line_chart_sample').getContext('2d');
-                            var myChart = new Chart(ctx, {
-                                type: 'line',
-                                data: {
-                                    labels: ['January', 'February', 'March', 'April', 'May', 'June'],
-                                    datasets: [{
-                                        label: 'Sample Dataset',
-                                        data: [0, 10, 5, 2, 20, 30, 45],
-                                        borderColor: 'rgb(255, 99, 132)',
-                                    }]
-                                }
-                            });                            
+                            var ctx = $("#line_chart_sample");
+                            line_chart(ctx);
                         </script>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Bar chart sample section -->
+        <!-- Balance chart section -->
         <section class="bg-light" id="bcs">
             <div class="container px-4">
                 <div class="row gx-4 justify-content-center">
                     <div class="col-lg-8">
                         <h2>Bar Chart Sample</h2>
                         <p class="lead">Below is a bar chart sample:</p>
-                        <canvas id="bar_chart_sample"></canvas>
+                        <canvas id="balance_chart"></canvas>
                         <script>
-                            var ctx = document.getElementById('bar_chart_sample').getContext('2d');
-                            var myChart = new Chart(ctx, {
-                                type: 'bar',
-                                data: {
-                                    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-                                    datasets: [{
-                                        label: '# of Votes',
-                                        data: [12, 19, 3, 5, 2, 3],
-                                        backgroundColor: [
-                                            'rgba(255, 99, 132, 0.2)',
-                                            'rgba(54, 162, 235, 0.2)',
-                                            'rgba(255, 206, 86, 0.2)',
-                                            'rgba(75, 192, 192, 0.2)',
-                                            'rgba(153, 102, 255, 0.2)',
-                                            'rgba(255, 159, 64, 0.2)'
-                                        ],
-                                        borderColor: [
-                                            'rgba(255, 99, 132, 1)',
-                                            'rgba(54, 162, 235, 1)',
-                                            'rgba(255, 206, 86, 1)',
-                                            'rgba(75, 192, 192, 1)',
-                                            'rgba(153, 102, 255, 1)',
-                                            'rgba(255, 159, 64, 1)'
-                                        ],
-                                        borderWidth: 1
-                                    }]
-                                },
-                                options: {
-                                    scales: {
-                                        y: {
-                                            beginAtZero: true
-                                        }
-                                    }
-                                }
-                            });
+                            var ctx = $("#balance_chart");
+                            balance_chart(ctx, 'balance/2010.csv');
                         </script>
                     </div>
                 </div>
