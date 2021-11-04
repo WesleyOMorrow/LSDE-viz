@@ -1,59 +1,82 @@
-function balance_chart(ctx, filename){
+// Apply chart themes
+am4core.useTheme(am4themes_animated);
+am4core.useTheme(am4themes_kelly);
 
-  // Open a file from the results
-  var req = new XMLHttpRequest();
-  req.open('GET', filename, false);
-  req.send();
-  if(req.status == 4 || req.status == 200){
-    // Read the file and split its data into lines
-    var data = (req.responseText).match(/[^\r\n]+/g);
-  }else{
-    alert("Cannot load the file " + filename);
+// Create chart instance
+var chart = am4core.create("balancediv", am4charts.XYChart);
+
+// Set up data source
+chart.dataSource.url = "https://raw.githubusercontent.com/WesleyOMorrow/LSDE-viz/main/data/balance/2010.csv";
+chart.dataSource.parser = new am4core.CSVParser();
+chart.dataSource.parser.options.useColumnNames = true;
+
+// Create axes
+var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+categoryAxis.dataFields.category = "address";
+categoryAxis.title.text = "Address";
+
+// Configure axis label
+var label = categoryAxis.renderer.labels.template;
+label.truncate = true;
+label.maxWidth = 200;
+label.tooltipText = "{category}";
+
+categoryAxis.events.on("sizechanged", function(ev) {
+    var axis = ev.target;
+      var cellWidth = axis.pixelWidth / (axis.endIndex - axis.startIndex);
+      if (cellWidth < axis.renderer.labels.template.maxWidth) {
+        axis.renderer.labels.template.rotation = -45;
+        axis.renderer.labels.template.horizontalCenter = "right";
+        axis.renderer.labels.template.verticalCenter = "middle";
+      }
+      else {
+        axis.renderer.labels.template.rotation = 0;
+        axis.renderer.labels.template.horizontalCenter = "middle";
+        axis.renderer.labels.template.verticalCenter = "top";
+      }
+    });
+
+// Create value axis
+var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+valueAxis.title.text = "Balance (BTC)";
+
+// Create series
+var series = chart.series.push(new am4charts.ColumnSeries());
+series.dataFields.valueY = "balance";
+series.dataFields.categoryX = "address";
+series.name = "Balance (BTC)";
+series.tooltipText = "{name}: [bold]{valueY}[/]";
+
+// Add cursor
+chart.cursor = new am4charts.XYCursor();
+
+function selectDataset(set) {
+  if (set == 2010) {
+    chart.dataSource.url = "https://raw.githubusercontent.com/WesleyOMorrow/LSDE-viz/main/data/balance/2010.csv";
+    chart.dataSource.load();
   }
-
-  var address = new Array();
-  var balance = new Array();
-  var idx = 0;
-
-  // Construct the labels and data for the chart
-  // Skip the first line, which consists of the headers
-  for (i = 1; i < data.length; i++) {
-    address[idx] = data[i].split(",")[0];
-    balance[idx] = Number(data[i].split(",")[2]);
-    idx++;
+  else if (set == 2011){
+    chart.dataSource.url = "https://raw.githubusercontent.com/WesleyOMorrow/LSDE-viz/main/data/balance/2011.csv";
+    chart.dataSource.load();
   }
-
-  // Create the chart
-  var myChart = new Chart(ctx, {
-      type: 'bar',
-      data: {
-          labels: address,
-          datasets: [{
-              label: 'The Balance in Each Address',
-              data: balance,
-              backgroundColor: 'rgba(54, 162, 235, 0.2)',
-              borderColor: 'rgba(54, 162, 235, 1)',
-              borderWidth: 1
-          }]
-      },
-      options: {
-          scales: {
-            y: {
-              display: true,
-              title: {
-                  display: true,
-                  text: 'Balance'
-              }
-             },
-             x: {
-              display: true,
-              title: {
-                  display: true,
-                  text: 'Address'
-              }
-              }
-          }
-        }
-  });
-
+  else if (set == 2012){
+    chart.dataSource.url = "https://raw.githubusercontent.com/WesleyOMorrow/LSDE-viz/main/data/balance/2012.csv";
+    chart.dataSource.load();
+  }
+  else if (set == 2013){
+    chart.dataSource.url = "https://raw.githubusercontent.com/WesleyOMorrow/LSDE-viz/main/data/balance/2013.csv";
+    chart.dataSource.load();
+  }
+  else if (set == 2014){
+    chart.dataSource.url = "https://raw.githubusercontent.com/WesleyOMorrow/LSDE-viz/main/data/balance/2014.csv";
+    chart.dataSource.load();
+  }
+  else if (set == 2015){
+    chart.dataSource.url = "https://raw.githubusercontent.com/WesleyOMorrow/LSDE-viz/main/data/balance/2015.csv";
+    chart.dataSource.load();
+  }
+  else if (set == 2016){
+    chart.dataSource.url = "https://raw.githubusercontent.com/WesleyOMorrow/LSDE-viz/main/data/balance/2016.csv";
+    chart.dataSource.load();
+  }
 }
