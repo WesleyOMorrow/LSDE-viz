@@ -11,16 +11,11 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
 
-        <!-- Include Chart.js -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.js"></script>
-
-        <!-- Include jQuery -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-        <!-- Include .js chart files -->
-        <script src="js/line_chart_sample.js"></script>
-        <script src="js/balance_chart.js"></script>
-
+        <!-- Include amCharts -->
+        <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+        <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+        <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+        <script src="https://cdn.amcharts.com/lib/4/themes/kelly.js"></script>
     </head>
 
     <body id="page-top">
@@ -56,11 +51,8 @@
                     <div class="col-lg-8">
                         <h2>Line Chart Sample</h2>
                         <p class="lead">Below is a line chart sample:</p>
-                        <canvas id="line_chart_sample"></canvas>
-                        <script>
-                            var ctx = $("#line_chart_sample");
-                            line_chart(ctx);
-                        </script>
+                        <div id="basicsdiv" style="width: 100%; height: 400px;"></div>
+                        <script src="js/basics_chart.js"></script>
                     </div>
                 </div>
             </div>
@@ -73,11 +65,17 @@
                     <div class="col-lg-8">
                         <h2>Bar Chart Sample</h2>
                         <p class="lead">Below is a bar chart sample:</p>
-                        <canvas id="balance_chart"></canvas>
-                        <script>
-                            var ctx = $("#balance_chart");
-                            balance_chart(ctx, 'balance/2010.csv');
-                        </script>
+                        <select onchange="selectDataset(this.options[this.selectedIndex].value);">
+                            <option value="2010">2010</option>
+                            <option value="2011">2011</option>
+                            <option value="2012">2012</option>
+                            <option value="2013">2013</option>
+                            <option value="2014">2014</option>
+                            <option value="2015">2015</option>
+                            <option value="2016">2016</option>
+                          </select>
+                        <div id="balancediv" style="width: 100%; height: 400px;"></div>
+                        <script src="js/balance_chart.js"></script>
                     </div>
                 </div>
             </div>
