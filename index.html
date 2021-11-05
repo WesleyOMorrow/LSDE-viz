@@ -15,7 +15,9 @@
         <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
         <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
         <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+        <script src="https://cdn.amcharts.com/lib/4/themes/frozen.js"></script>
         <script src="https://cdn.amcharts.com/lib/4/themes/kelly.js"></script>
+        <script src="https://cdn.amcharts.com/lib/4/themes/material.js"></script>
     </head>
 
     <body id="page-top">
@@ -65,7 +67,7 @@
                 <div class="row gx-4 justify-content-center">
                     <div class="col-lg-8">
                         <h2>Degree Distribution<br><br></h2>
-                        <select onchange="selectDataset(this.options[this.selectedIndex].value);">
+                        <select onchange="selectDataset(value);">
                             <option value="2010">2010</option>
                             <option value="2011">2011</option>
                             <option value="2012">2012</option>
@@ -73,7 +75,7 @@
                             <option value="2014">2014</option>
                             <option value="2015">2015</option>
                             <option value="2016">2016</option>
-                          </select>
+                        </select>
                         <br><br>
                         <div id="degreediv" style="width: 100%; height: 400px;"></div>
                         <script src="js/degree_chart.js"></script>
@@ -88,11 +90,11 @@
                 <div class="row gx-4 justify-content-center">
                     <div class="col-lg-8">
                         <h2>PageRank<br><br></h2>
-                        <!-- <select onchange="selectDataset(this.options[this.selectedIndex].value);">
+                        <select onchange="selectDataset(value);">
                             <option value="2010">2010</option>
                             <option value="2011">2011</option>
                             <option value="2012">2012</option>
-                          </select> -->
+                        </select>
                         <br><br>
                         <div id="pagerankdiv" style="width: 100%; height: 400px;"></div>
                         <script src="js/pagerank_chart.js"></script>
@@ -107,7 +109,7 @@
                 <div class="row gx-4 justify-content-center">
                     <div class="col-lg-8">
                         <h2>Balance (Top 100 Addresses)<br><br></h2>
-                        <select onchange="selectDataset(this.options[this.selectedIndex].value);">
+                        <select onchange="selectDataset(value);">
                             <option value="2010">2010</option>
                             <option value="2011">2011</option>
                             <option value="2012">2012</option>
@@ -115,7 +117,7 @@
                             <option value="2014">2014</option>
                             <option value="2015">2015</option>
                             <option value="2016">2016</option>
-                          </select>
+                        </select>
                         <br><br>
                         <div id="balancediv" style="width: 100%; height: 400px;"></div>
                         <script src="js/balance_chart.js"></script>
