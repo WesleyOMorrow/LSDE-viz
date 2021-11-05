@@ -7,8 +7,7 @@ am4core.useTheme(am4themes_kelly);
 var chart = am4core.create("balancediv", am4charts.XYChart);
 
 // Set up data source
-// chart.dataSource.url = "https://raw.githubusercontent.com/WesleyOMorrow/LSDE-viz/main/data/balance/2010.csv";
-chart.dataSource.url = "data/balance/2010.csv";
+chart.dataSource.url = "https://raw.githubusercontent.com/WesleyOMorrow/LSDE-viz/main/data/balance/2010.csv";
 chart.dataSource.parser = new am4core.CSVParser();
 chart.dataSource.parser.options.useColumnNames = true;
 
