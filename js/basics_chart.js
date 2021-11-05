@@ -14,36 +14,49 @@ chart.dataSource.parser.options.useColumnNames = true;
 var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
 categoryAxis.dataFields.category = "snapshot";
 
-// Create value axis
-var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-
 // Create series
-var series1 = chart.series.push(new am4charts.LineSeries());
-series1.dataFields.valueY = "numVertices";
-series1.dataFields.categoryX = "snapshot";
-series1.name = "Number of Vertices";
-series1.strokeWidth = 3;
-series1.tensionX = 0.7;
-series1.bullets.push(new am4charts.CircleBullet());
-series1.tooltipText = "{name}: [bold]{valueY}[/]";
+function createSeriesAndAxis(field, name, topMargin, bottomMargin) {
+    var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+    
+    var series = chart.series.push(new am4charts.LineSeries());
+    series.dataFields.valueY = field;
+    series.dataFields.categoryX = "snapshot";
+    series.name = name;
+    series.tooltipText = "{name}: [b]{valueY}[/]";
+    series.strokeWidth = 2;
+    series.yAxis = valueAxis;
+    
+    valueAxis.renderer.line.strokeOpacity = 1;
+    valueAxis.renderer.line.stroke = series.stroke;
+    valueAxis.renderer.grid.template.stroke = series.stroke;
+    valueAxis.renderer.grid.template.strokeOpacity = 0.1;
+    valueAxis.renderer.labels.template.fill = series.stroke;
+    valueAxis.renderer.minGridDistance = 20;
+    valueAxis.align = "right";
+    
+    if (topMargin && bottomMargin) {
+      valueAxis.marginTop = 10;
+      valueAxis.marginBottom = 10;
+    }
+    else {
+      if (topMargin) {
+        valueAxis.marginTop = 20;
+      }
+      if (bottomMargin) {
+        valueAxis.marginBottom = 20;
+      }
+    }
+    
+    var bullet = series.bullets.push(new am4charts.CircleBullet());
+    bullet.circle.stroke = am4core.color("#fff");
+    bullet.circle.strokeWidth = 2;
+  }
+  
+createSeriesAndAxis("numVertices", "Number of Vertices", false, true);
+createSeriesAndAxis("numEdge", "Number of Edges", true, true);
+createSeriesAndAxis("avgdegree", "Average Degree", true, false);
 
-var series2 = chart.series.push(new am4charts.LineSeries());
-series2.dataFields.valueY = "numEdge";
-series2.dataFields.categoryX = "snapshot";
-series2.name = "Number of Edges";
-series2.strokeWidth = 3;
-series2.tensionX = 0.7;
-series2.bullets.push(new am4charts.CircleBullet());
-series2.tooltipText = "{name}: [bold]{valueY}[/]";
-
-var series3 = chart.series.push(new am4charts.LineSeries());
-series3.dataFields.valueY = "avgdegree";
-series3.dataFields.categoryX = "snapshot";
-series3.name = "Average Degree";
-series3.strokeWidth = 3;
-series3.tensionX = 0.7;
-series3.bullets.push(new am4charts.CircleBullet());
-series3.tooltipText = "{name}: [bold]{valueY}[/]";
+chart.leftAxesContainer.layout = "vertical";
 
 // Add legend
 chart.legend = new am4charts.Legend();
