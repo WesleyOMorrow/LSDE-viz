@@ -39,13 +39,13 @@ categoryAxis.events.on("sizechanged", function(ev) {
 
 // Create value axis
 var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-valueAxis.title.text = "Balance (BTC)";
+valueAxis.title.text = "Balance";
 
 // Create series
 var series = chart.series.push(new am4charts.ColumnSeries());
 series.dataFields.valueY = "balance";
 series.dataFields.categoryX = "address";
-series.name = "Balance (BTC)";
+series.name = "Balance";
 series.tooltipText = "{name}: [bold]{valueY}[/]";
 
 // Add cursor
