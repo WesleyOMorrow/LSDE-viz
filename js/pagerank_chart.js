@@ -1,6 +1,7 @@
 // Apply chart themes
 am4core.useTheme(am4themes_animated);
-am4core.useTheme(am4themes_kelly);
+am4core.unuseTheme(am4themes_frozen);
+am4core.useTheme(am4themes_material);
 
 // Create chart instance
 var chart = am4core.create("pagerankdiv", am4charts.XYChart);

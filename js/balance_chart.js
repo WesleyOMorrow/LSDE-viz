@@ -1,5 +1,6 @@
 // Apply chart themes
 am4core.useTheme(am4themes_animated);
+am4core.unuseTheme(am4themes_material);
 am4core.useTheme(am4themes_kelly);
 
 // Create chart instance
