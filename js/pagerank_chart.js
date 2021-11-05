@@ -7,7 +7,7 @@ am4core.useTheme(am4themes_material);
 var chart = am4core.create("pagerankdiv", am4charts.XYChart);
 
 // Set up data source
-chart.dataSource.url = "https://raw.githubusercontent.com/WesleyOMorrow/LSDE-viz/main/data/pagerank/2010.csv";
+chart.dataSource.url = "https://raw.githubusercontent.com/WesleyOMorrow/LSDE-viz/main/data/pagerank/2010_2012.csv";
 chart.dataSource.parser = new am4core.CSVParser();
 chart.dataSource.parser.options.useColumnNames = true;
 
@@ -50,19 +50,3 @@ series.tooltipText = "{name}: [bold]{valueY}[/]";
 
 // Add cursor
 chart.cursor = new am4charts.XYCursor();
-
-// Select datasets
-function selectDataset(set) {
-  if (set == 2010) {
-    chart.dataSource.url = "https://raw.githubusercontent.com/WesleyOMorrow/LSDE-viz/main/data/pagerank/2010.csv";
-    chart.dataSource.load();
-  }
-  else if (set == 2011){
-    chart.dataSource.url = "https://raw.githubusercontent.com/WesleyOMorrow/LSDE-viz/main/data/pagerank/2011.csv";
-    chart.dataSource.load();
-  }
-  else if (set == 2012){
-    chart.dataSource.url = "https://raw.githubusercontent.com/WesleyOMorrow/LSDE-viz/main/data/pagerank/2012.csv";
-    chart.dataSource.load();
-  }
-}
