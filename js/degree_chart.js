@@ -3,17 +3,17 @@ am4core.useTheme(am4themes_animated);
 am4core.useTheme(am4themes_kelly);
 
 // Create chart instance
-var chart = am4core.create("balancediv", am4charts.XYChart);
+var chart = am4core.create("degreediv", am4charts.XYChart);
 
 // Set up data source
-chart.dataSource.url = "https://raw.githubusercontent.com/WesleyOMorrow/LSDE-viz/main/data/balance/2010.csv";
+chart.dataSource.url = "https://raw.githubusercontent.com/WesleyOMorrow/LSDE-viz/main/data/degree/2010.csv";
 chart.dataSource.parser = new am4core.CSVParser();
 chart.dataSource.parser.options.useColumnNames = true;
 
 // Create axes
 var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
-categoryAxis.dataFields.category = "address";
-categoryAxis.title.text = "Address";
+categoryAxis.dataFields.category = "degree";
+categoryAxis.title.text = "Degree";
 
 // Configure axis label
 var label = categoryAxis.renderer.labels.template;
@@ -38,13 +38,13 @@ categoryAxis.events.on("sizechanged", function(ev) {
 
 // Create value axis
 var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-valueAxis.title.text = "Balance (BTC)";
+valueAxis.title.text = "Frequency";
 
 // Create series
 var series = chart.series.push(new am4charts.ColumnSeries());
-series.dataFields.valueY = "balance";
-series.dataFields.categoryX = "address";
-series.name = "Balance (BTC)";
+series.dataFields.valueY = "count";
+series.dataFields.categoryX = "degree";
+series.name = "Frequency";
 series.tooltipText = "{name}: [bold]{valueY}[/]";
 
 // Add cursor
@@ -53,31 +53,31 @@ chart.cursor = new am4charts.XYCursor();
 // Select datasets
 function selectDataset(set) {
   if (set == 2010) {
-    chart.dataSource.url = "https://raw.githubusercontent.com/WesleyOMorrow/LSDE-viz/main/data/balance/2010.csv";
+    chart.dataSource.url = "https://raw.githubusercontent.com/WesleyOMorrow/LSDE-viz/main/data/degree/2010.csv";
     chart.dataSource.load();
   }
   else if (set == 2011){
-    chart.dataSource.url = "https://raw.githubusercontent.com/WesleyOMorrow/LSDE-viz/main/data/balance/2011.csv";
+    chart.dataSource.url = "https://raw.githubusercontent.com/WesleyOMorrow/LSDE-viz/main/data/degree/2011.csv";
     chart.dataSource.load();
   }
   else if (set == 2012){
-    chart.dataSource.url = "https://raw.githubusercontent.com/WesleyOMorrow/LSDE-viz/main/data/balance/2012.csv";
+    chart.dataSource.url = "https://raw.githubusercontent.com/WesleyOMorrow/LSDE-viz/main/data/degree/2012.csv";
     chart.dataSource.load();
   }
   else if (set == 2013){
-    chart.dataSource.url = "https://raw.githubusercontent.com/WesleyOMorrow/LSDE-viz/main/data/balance/2013.csv";
+    chart.dataSource.url = "https://raw.githubusercontent.com/WesleyOMorrow/LSDE-viz/main/data/degree/2013.csv";
     chart.dataSource.load();
   }
   else if (set == 2014){
-    chart.dataSource.url = "https://raw.githubusercontent.com/WesleyOMorrow/LSDE-viz/main/data/balance/2014.csv";
+    chart.dataSource.url = "https://raw.githubusercontent.com/WesleyOMorrow/LSDE-viz/main/data/degree/2014.csv";
     chart.dataSource.load();
   }
   else if (set == 2015){
-    chart.dataSource.url = "https://raw.githubusercontent.com/WesleyOMorrow/LSDE-viz/main/data/balance/2015.csv";
+    chart.dataSource.url = "https://raw.githubusercontent.com/WesleyOMorrow/LSDE-viz/main/data/degree/2015.csv";
     chart.dataSource.load();
   }
   else if (set == 2016){
-    chart.dataSource.url = "https://raw.githubusercontent.com/WesleyOMorrow/LSDE-viz/main/data/balance/2016.csv";
+    chart.dataSource.url = "https://raw.githubusercontent.com/WesleyOMorrow/LSDE-viz/main/data/degree/2016.csv";
     chart.dataSource.load();
   }
 }
